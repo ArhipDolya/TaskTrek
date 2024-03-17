@@ -1,0 +1,2 @@
+DOCKER-COMPOSE-UP = docker-compose -f docker-compose/docker-compose.yml -f docker-compose/docker-compose.db.yml up
+DOCKER-COMPOSE-UP-BUILD = docker-compose -f docker-compose/docker-compose.yml -f docker-compose/docker-compose.db.yml up --build
