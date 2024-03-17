@@ -1,8 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
 
-
-Base = declarative_base()
+from core.app.database import Base
 
 
 class TaskModel(Base):
@@ -13,4 +11,3 @@ class TaskModel(Base):
     description = Column(String, index=True)
     status = Column(String, default="Not completed")
     due_date = Column(DateTime, nullable=True)
-    

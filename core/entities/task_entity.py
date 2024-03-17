@@ -20,3 +20,9 @@ class TaskCreate(BaseModel):
     description: str
     status: str = Field(default='Not completed')
     due_date: Optional[datetime] = None
+    
+class TaskUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    status: Optional[str] = None
+    due_date: Optional[datetime] = None
