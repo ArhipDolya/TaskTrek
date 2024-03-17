@@ -10,3 +10,13 @@ class TaskEntity(BaseModel):
     description: str
     status: str = Field(default='Not completed')
     due_date: Optional[datetime] = None
+    
+    class Config:
+        from_attributes = True
+    
+
+class TaskCreate(BaseModel):
+    title: str
+    description: str
+    status: str = Field(default='Not completed')
+    due_date: Optional[datetime] = None
