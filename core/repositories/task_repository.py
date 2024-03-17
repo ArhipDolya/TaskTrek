@@ -37,11 +37,10 @@ class SQLTaskRepository(ITaskRepository):
         
     async def create(self, task: TaskCreate) -> TaskEntity:
         db_task = TaskModel(**task.dict())
-
         self.db_session.add(db_task)
         self.db_session.commit()
         self.db_session.refresh(db_task)
-
+        
         return TaskEntity.from_orm(db_task)
         
     async def get_by_id(self, id: int) -> Optional[TaskEntity]:
@@ -57,17 +56,14 @@ class SQLTaskRepository(ITaskRepository):
     async def update(self, task_id: int, task: TaskUpdate) -> TaskEntity:
         db_task = self.db_session.query(TaskModel).filter(TaskModel.id == task_id).first()
         if db_task:
-            task_data = task.dict(exclude_unset=True)  # Exclude fields not set by the user
+            task_data = task.dict(exclude_unset=True)
             for key, value in task_data.items():
                 setattr(db_task, key, value)
             self.db_session.commit()
             return TaskEntity.from_orm(db_task)
         return None
 
-        
     async def delete(self, task_id: int) -> None:
         db_task = self.db_session.query(TaskModel).filter(TaskModel.id == task_id).first()
-        if db_task:
-            self.db_session.delete(db_task)
-            self.db_session.commit()
-        return None
+        self.db_session.delete(db_task)
+        self.db_session.commit()

@@ -1,5 +1,6 @@
 from core.entities.task_entity import TaskEntity, TaskCreate, TaskUpdate
 from core.repositories.task_repository import ITaskRepository
+from core.exceptions.task_exceptions import TaskDeletionFailedException, TaskNotFoundException, TaskCreationFailedException, TaskUpdateFailedException, GetAllTasksException
 
 
 class TaskService:
@@ -8,16 +9,32 @@ class TaskService:
         self.task_repository = task_repository
         
     async def create_task(self, task: TaskCreate) -> TaskEntity:
-        return await self.task_repository.create(task)
+        try:
+            return await self.task_repository.create(task)
+        except Exception as e:
+            raise TaskCreationFailedException(reason=str(e))
     
     async def get_task_by_id(self, task_id: int) -> TaskEntity:
-        return await self.task_repository.get_by_id(task_id)
-    
+        task = await self.task_repository.get_by_id(task_id)
+        if task is None:
+            raise TaskNotFoundException(task_id=task_id)
+        return task
+        
     async def get_all_tasks(self) -> list[TaskEntity]:
-        return await self.task_repository.get_all()
+        try:
+            return await self.task_repository.get_all()
+        except Exception as e:
+            raise GetAllTasksException(reason=str(e))
     
     async def update_task(self, task_id: int, task: TaskUpdate) -> TaskEntity:
-        return await self.task_repository.update(task_id, task)
-    
+        try:
+            updated_task = await self.task_repository.update(task_id, task)
+            return updated_task
+        except Exception as e:
+            raise TaskUpdateFailedException(task_id=task_id, reason=str(e))
+        
     async def delete(self, task_id: int) -> None:
-        return await self.task_repository.delete(task_id)
+        try:
+            await self.task_repository.delete(task_id)
+        except Exception as e:
+            raise TaskDeletionFailedException(task_id=task_id, reason=str(e))
