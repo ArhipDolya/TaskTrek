@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 
-from core.entities.task_entity import TaskEntity, TaskCreate, TaskUpdate
-from core.services.task_service import TaskService
-from core.exceptions.task_exceptions import GetAllTasksException, TaskNotFoundException, TaskCreationFailedException, TaskNotFoundException, TaskUpdateFailedException, TaskDeletionFailedException
+from core.entities.tasks.task_entity import TaskEntity, TaskCreate, TaskUpdate
+from core.services.tasks.task_service import TaskService
+from core.exceptions.tasks.task_exceptions import GetAllTasksException, TaskCreationFailedException, TaskNotFoundException, TaskUpdateFailedException, TaskDeletionFailedException
 
 from core.api.v1.dependencies import get_task_service
 

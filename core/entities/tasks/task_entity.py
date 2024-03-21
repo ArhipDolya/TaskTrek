@@ -13,7 +13,6 @@ class TaskEntity(BaseModel):
     
     class Config:
         from_attributes = True
-    
 
 class TaskCreate(BaseModel):
     title: str

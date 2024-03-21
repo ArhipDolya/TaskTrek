@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import Depends
 
 from sqlalchemy.orm import Session
 
-from core.services.task_service import TaskService
-from core.repositories.task_repository import SQLTaskRepository
+from core.services.tasks.task_service import TaskService
+from core.repositories.tasks.task_repository import SQLTaskRepository
 from core.app.database import SessionLocal
 
 

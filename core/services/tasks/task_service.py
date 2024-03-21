@@ -1,6 +1,6 @@
-from core.entities.task_entity import TaskEntity, TaskCreate, TaskUpdate
-from core.repositories.task_repository import ITaskRepository
-from core.exceptions.task_exceptions import TaskDeletionFailedException, TaskNotFoundException, TaskCreationFailedException, TaskUpdateFailedException, GetAllTasksException
+from core.entities.tasks.task_entity import TaskEntity, TaskCreate, TaskUpdate
+from core.repositories.tasks.task_repository import ITaskRepository
+from core.exceptions.tasks.task_exceptions import TaskDeletionFailedException, TaskNotFoundException, TaskCreationFailedException, TaskUpdateFailedException, GetAllTasksException
 
 
 class TaskService:

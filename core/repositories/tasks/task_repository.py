@@ -3,8 +3,8 @@ from typing import Optional
 
 from sqlalchemy.orm import Session
 
-from core.entities.task_entity import TaskEntity, TaskCreate, TaskUpdate
-from core.models.task_model import TaskModel
+from core.entities.tasks.task_entity import TaskEntity, TaskCreate, TaskUpdate
+from core.models.tasks.task_model import TaskModel
 
 
 class ITaskRepository(ABC):

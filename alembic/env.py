@@ -10,8 +10,6 @@ from alembic import context
 from dotenv import load_dotenv
 
 from core.app.database import Base
-from core.models.task_model import TaskModel
-
 
 load_dotenv()
 
